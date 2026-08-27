@@ -1,6 +1,8 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
 
+ timeout: 30000
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -30,11 +32,17 @@ export default defineConfig({
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    launchOptions: {
+      slowMo: 500
+    }
 
-     screenshot: 'only-on-failure',
+    trace: /*'on-first-retry'*/ 'on',
 
-    video: 'retain-on-failure'
+    screenshot: /*'only-on-failure'*/ 'on',
+
+    video: /*'retain-on-failure'*/ 'on',
+
+    headless: false
   },
 
   /* Configure projects for major browsers */
